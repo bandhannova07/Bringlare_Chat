@@ -64,10 +64,28 @@ export function LoginForm() {
       <button
         onClick={handleGoogleLogin}
         disabled={loading}
-        className="btn btn-secondary w-full h-12"
+        style={{
+          width: '100%',
+          height: '48px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.5rem',
+          background: 'var(--surface)',
+          border: '1px solid var(--border)',
+          borderRadius: 'var(--radius-sm)',
+          color: 'var(--text-primary)',
+          fontSize: '14px',
+          fontWeight: '500',
+          cursor: loading ? 'not-allowed' : 'pointer',
+          opacity: loading ? 0.6 : 1,
+          transition: 'all var(--transition)'
+        }}
+        onMouseOver={(e) => !loading && (e.currentTarget.style.background = 'var(--bg)')}
+        onMouseOut={(e) => !loading && (e.currentTarget.style.background = 'var(--surface)')}
       >
         {loading ? (
-          <div className="animate-spin w-5 h-5 border-2 border-gray-300 border-t-blue-600 rounded-full" />
+          <div className="loading-spinner" style={{ width: '20px', height: '20px' }} />
         ) : (
           <>
             <Chrome className="w-5 h-5" />
@@ -92,24 +110,26 @@ export function LoginForm() {
       <form onSubmit={handleEmailLogin} className="space-y-4">
         <div className="space-y-3">
           <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-muted)' }} />
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-secondary)' }} />
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="input pl-10 h-12"
+              className="search-input"
+              style={{ paddingLeft: '2.5rem', height: '48px' }}
               required
             />
           </div>
           <div className="relative">
-            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-muted)' }} />
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-secondary)' }} />
             <input
               type="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="input pl-10 h-12"
+              className="search-input"
+              style={{ paddingLeft: '2.5rem', height: '48px' }}
               required
             />
           </div>
@@ -118,10 +138,39 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={loading || !email || !password}
-          className="btn btn-primary w-full h-12"
+          style={{
+            width: '100%',
+            height: '48px',
+            background: loading || !email || !password ? 'var(--text-secondary)' : 'var(--primary)',
+            color: 'white',
+            border: 'none',
+            borderRadius: 'var(--radius-sm)',
+            fontSize: '14px',
+            fontWeight: '500',
+            cursor: loading || !email || !password ? 'not-allowed' : 'pointer',
+            transition: 'all var(--transition)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          onMouseOver={(e) => {
+            if (!loading && email && password) {
+              e.currentTarget.style.background = 'var(--primary-600)'
+            }
+          }}
+          onMouseOut={(e) => {
+            if (!loading && email && password) {
+              e.currentTarget.style.background = 'var(--primary)'
+            }
+          }}
         >
           {loading ? (
-            <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
+            <div className="loading-spinner" style={{ 
+              width: '20px', 
+              height: '20px',
+              borderColor: 'rgba(255, 255, 255, 0.3)',
+              borderTopColor: 'white'
+            }} />
           ) : (
             'Sign In'
           )}
@@ -130,7 +179,19 @@ export function LoginForm() {
 
       {/* Forgot Password */}
       <div className="text-center">
-        <button className="btn btn-ghost text-sm">
+        <button 
+          style={{
+            background: 'transparent',
+            border: 'none',
+            color: 'var(--text-secondary)',
+            fontSize: '14px',
+            cursor: 'pointer',
+            textDecoration: 'underline',
+            transition: 'color var(--transition)'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.color = 'var(--primary)'}
+          onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}
+        >
           Forgot your password?
         </button>
       </div>

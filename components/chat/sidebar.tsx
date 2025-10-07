@@ -53,23 +53,26 @@ export function Sidebar({ chats, selectedChatId, onChatSelect, onNewChat, loadin
       <div className="flex flex-col h-full">
         {/* Header */}
         <div 
-          className="p-4 border-b animate-slideInLeft"
+          className="p-4 border-b"
           style={{
-            background: 'var(--gradient-primary)',
+            background: 'var(--primary)',
             borderColor: 'var(--border)'
           }}
         >
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center space-x-3">
               <div
-                className="avatar avatar-lg online-indicator cursor-pointer"
+                className="chat-avatar online cursor-pointer"
                 onClick={() => setShowProfileDialog(true)}
                 style={{
                   backgroundImage: user.photo_url ? `url(${user.photo_url})` : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  border: '2px solid rgba(255, 255, 255, 0.2)'
+                  border: '2px solid rgba(255, 255, 255, 0.2)',
+                  transition: 'all var(--transition)'
                 }}
+                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
                 {!user.photo_url && user.display_name?.charAt(0).toUpperCase()}
               </div>

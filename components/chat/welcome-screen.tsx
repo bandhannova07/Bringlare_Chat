@@ -31,20 +31,27 @@ export function WelcomeScreen() {
   ]
 
   return (
-    <div className="flex-1 flex items-center justify-center p-8" style={{ background: 'var(--gradient-bg)' }}>
+    <div className="flex-1 flex items-center justify-center p-8" style={{ background: 'var(--bg)' }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center max-w-2xl animate-fadeIn"
+        className="text-center max-w-2xl"
       >
         {/* Welcome Header */}
         <div className="mb-12">
           <div 
-            className="avatar avatar-xl mx-auto mb-6 animate-bounce"
             style={{ 
-              background: 'var(--gradient-accent)',
-              boxShadow: 'var(--shadow-xl)'
+              width: '96px',
+              height: '96px',
+              background: 'var(--primary)',
+              borderRadius: '50%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              margin: '0 auto 1.5rem auto',
+              boxShadow: 'var(--shadow-lg)',
+              animation: 'bounce 2s infinite'
             }}
           >
             <MessageCircle className="w-12 h-12 text-white" />
@@ -65,22 +72,44 @@ export function WelcomeScreen() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="card hover-lift animate-fadeIn"
+              style={{
+                background: 'var(--surface)',
+                padding: '1.5rem',
+                borderRadius: 'var(--radius-md)',
+                border: '1px solid var(--border)',
+                boxShadow: 'var(--shadow-sm)',
+                transition: 'all var(--transition)',
+                cursor: 'pointer'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-lg)'
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = 'var(--shadow-sm)'
+              }}
             >
-              <div className="card-body">
-                <div 
-                  className="avatar avatar-md mb-4"
-                  style={{ background: 'rgba(7, 94, 84, 0.1)' }}
-                >
-                  <feature.icon className="w-6 h-6" style={{ color: 'var(--chat-primary)' }} />
-                </div>
-                <h3 className="font-semibold text-lg mb-2" style={{ color: 'var(--text-primary)' }}>
-                  {feature.title}
-                </h3>
-                <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
-                  {feature.description}
-                </p>
+              <div 
+                style={{ 
+                  width: '48px',
+                  height: '48px',
+                  background: `rgba(79, 70, 229, 0.1)`,
+                  borderRadius: 'var(--radius-sm)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  marginBottom: '1rem'
+                }}
+              >
+                <feature.icon className="w-6 h-6" style={{ color: 'var(--primary)' }} />
               </div>
+              <h3 className="font-semibold text-lg mb-2" style={{ color: 'var(--text-primary)' }}>
+                {feature.title}
+              </h3>
+              <p className="text-sm" style={{ color: 'var(--text-secondary)' }}>
+                {feature.description}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -90,17 +119,17 @@ export function WelcomeScreen() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="card"
           style={{ 
-            background: 'rgba(59, 130, 246, 0.05)',
-            border: '1px solid rgba(59, 130, 246, 0.2)'
+            background: `rgba(16, 185, 129, 0.05)`,
+            border: `1px solid rgba(16, 185, 129, 0.2)`,
+            padding: '1.5rem',
+            borderRadius: 'var(--radius-md)',
+            textAlign: 'center'
           }}
         >
-          <div className="card-body">
-            <p className="text-sm m-0" style={{ color: 'var(--text-primary)' }}>
-              💡 <strong>Tip:</strong> Use the search bar in the sidebar to find contacts and start new conversations
-            </p>
-          </div>
+          <p className="text-sm m-0" style={{ color: 'var(--text-primary)' }}>
+            💡 <strong style={{ color: 'var(--accent)' }}>Tip:</strong> Use the search bar in the sidebar to find contacts and start new conversations
+          </p>
         </motion.div>
       </motion.div>
     </div>
