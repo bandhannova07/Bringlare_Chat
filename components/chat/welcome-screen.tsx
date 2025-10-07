@@ -31,43 +31,109 @@ export function WelcomeScreen() {
   ]
 
   return (
-    <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div style={{
+      flex: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%)',
+      padding: '2rem'
+    }}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center max-w-2xl px-8"
+        style={{
+          textAlign: 'center',
+          maxWidth: '600px',
+          padding: '2rem'
+        }}
       >
         {/* Welcome Header */}
-        <div className="mb-12">
-          <div className="w-24 h-24 bg-gradient-to-br from-chat-primary to-chat-accent rounded-full flex items-center justify-center mx-auto mb-6">
-            <MessageCircle className="w-12 h-12 text-white" />
+        <div style={{ marginBottom: '3rem' }}>
+          <div style={{
+            width: '96px',
+            height: '96px',
+            background: 'linear-gradient(135deg, #075e54 0%, #25d366 100%)',
+            borderRadius: '50%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            margin: '0 auto 1.5rem auto',
+            boxShadow: '0 10px 25px rgba(7, 94, 84, 0.3)'
+          }}>
+            <MessageCircle style={{ width: '48px', height: '48px', color: 'white' }} />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            Welcome to Bringlare Chat, {user?.display_name?.split(' ')[0]}!
+          <h1 style={{
+            fontSize: '2.5rem',
+            fontWeight: 'bold',
+            color: '#1f2937',
+            marginBottom: '1rem',
+            lineHeight: '1.2'
+          }}>
+            Welcome to Bringlare Chat, {user?.display_name?.split(' ')[0]}! 👋
           </h1>
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p style={{
+            fontSize: '1.125rem',
+            color: '#6b7280',
+            lineHeight: '1.6'
+          }}>
             Select a chat from the sidebar to start messaging, or create a new conversation
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+          gap: '1.5rem',
+          marginBottom: '2rem'
+        }}>
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700"
+              style={{
+                background: 'white',
+                padding: '1.5rem',
+                borderRadius: '12px',
+                boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+                border: '1px solid #e5e7eb',
+                transition: 'transform 0.2s, box-shadow 0.2s'
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)'
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)'
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)'
+                e.currentTarget.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.1)'
+              }}
             >
-              <div className="bg-chat-primary/10 p-3 rounded-lg inline-block mb-4">
-                <feature.icon className="w-6 h-6 text-chat-primary" />
+              <div style={{
+                background: 'rgba(7, 94, 84, 0.1)',
+                padding: '12px',
+                borderRadius: '8px',
+                display: 'inline-block',
+                marginBottom: '1rem'
+              }}>
+                <feature.icon style={{ width: '24px', height: '24px', color: '#075e54' }} />
               </div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+              <h3 style={{
+                fontWeight: '600',
+                color: '#1f2937',
+                marginBottom: '0.5rem',
+                fontSize: '1.1rem'
+              }}>
                 {feature.title}
               </h3>
-              <p className="text-gray-600 dark:text-gray-300 text-sm">
+              <p style={{
+                color: '#6b7280',
+                fontSize: '0.875rem',
+                lineHeight: '1.5'
+              }}>
                 {feature.description}
               </p>
             </motion.div>
@@ -79,9 +145,18 @@ export function WelcomeScreen() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-gray-500 dark:text-gray-400"
+          style={{
+            background: 'rgba(59, 130, 246, 0.1)',
+            padding: '1rem',
+            borderRadius: '8px',
+            border: '1px solid rgba(59, 130, 246, 0.2)'
+          }}
         >
-          <p className="text-sm">
+          <p style={{
+            fontSize: '0.875rem',
+            color: '#374151',
+            margin: 0
+          }}>
             💡 <strong>Tip:</strong> Use the search bar in the sidebar to find contacts and start new conversations
           </p>
         </motion.div>

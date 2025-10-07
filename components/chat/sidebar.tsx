@@ -50,26 +50,64 @@ export function Sidebar({ chats, selectedChatId, onChatSelect, onNewChat, loadin
 
   return (
     <>
-      <div className="flex flex-col h-full">
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         {/* Header */}
-        <div className="p-4 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center space-x-3">
-              <Avatar 
-                className="w-10 h-10 cursor-pointer hover:ring-2 hover:ring-chat-primary transition-all"
+        <div style={{
+          padding: '1rem',
+          borderBottom: '1px solid #e5e7eb',
+          background: '#075e54'
+        }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '1rem'
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+              <div
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  background: user.photo_url ? `url(${user.photo_url})` : '#25d366',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'white',
+                  fontWeight: 'bold',
+                  cursor: 'pointer',
+                  transition: 'transform 0.2s',
+                  border: '2px solid rgba(255, 255, 255, 0.2)'
+                }}
                 onClick={() => setShowProfileDialog(true)}
+                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
+                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
-                <AvatarImage src={user.photo_url || ''} alt={user.display_name} />
-                <AvatarFallback className="bg-chat-primary text-white">
-                  {user.display_name?.charAt(0).toUpperCase()}
-                </AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <h2 className="font-semibold text-gray-900 dark:text-white truncate">
+                {!user.photo_url && user.display_name?.charAt(0).toUpperCase()}
+              </div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <h2 style={{
+                  fontWeight: '600',
+                  color: 'white',
+                  fontSize: '1rem',
+                  margin: 0,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap'
+                }}>
                   {user.display_name}
                 </h2>
-                <p className="text-sm text-gray-500 dark:text-gray-400 truncate">
-                  {user.status_message}
+                <p style={{
+                  fontSize: '0.875rem',
+                  color: 'rgba(255, 255, 255, 0.8)',
+                  margin: 0,
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  whiteSpace: 'nowrap'
+                }}>
+                  {user.status_message || 'Available'}
                 </p>
               </div>
             </div>

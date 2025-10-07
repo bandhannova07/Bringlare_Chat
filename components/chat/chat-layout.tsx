@@ -41,13 +41,24 @@ export function ChatLayout() {
   }
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900">
+    <div style={{
+      display: 'flex',
+      height: '100vh',
+      background: '#f9fafb'
+    }}>
       {/* Sidebar */}
       <motion.div
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-80 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col"
+        style={{
+          width: '320px',
+          background: 'white',
+          borderRight: '1px solid #e5e7eb',
+          display: 'flex',
+          flexDirection: 'column',
+          boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)'
+        }}
       >
         <Sidebar
           chats={chats}
@@ -59,7 +70,12 @@ export function ChatLayout() {
       </motion.div>
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col">
+      <div style={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        background: '#f3f4f6'
+      }}>
         {selectedChatId ? (
           <ChatWindow
             chatId={selectedChatId}
