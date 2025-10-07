@@ -155,7 +155,6 @@ export interface PushNotificationPayload {
   icon?: string
   badge?: string
   data?: Record<string, any>
-  actions?: NotificationAction[]
 }
 
 // API response types

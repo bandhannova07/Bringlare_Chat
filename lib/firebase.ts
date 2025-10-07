@@ -1,7 +1,6 @@
 import { initializeApp, getApps } from 'firebase/app'
 import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 import { getDatabase } from 'firebase/database'
-import { getMessaging, isSupported } from 'firebase/messaging'
 import { getStorage } from 'firebase/storage'
 
 const firebaseConfig = {
@@ -28,11 +27,9 @@ export const googleProvider = new GoogleAuthProvider()
 googleProvider.addScope('profile')
 googleProvider.addScope('email')
 
-// Firebase Cloud Messaging
+// Firebase Cloud Messaging (disabled for build compatibility)
 export const getMessagingInstance = async () => {
-  if (typeof window !== 'undefined' && await isSupported()) {
-    return getMessaging(app)
-  }
+  // Messaging will be implemented later for push notifications
   return null
 }
 

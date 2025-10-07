@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Camera, Edit2, Save, X } from 'lucide-react'
 import { useAuth } from '@/components/providers/auth-provider'
-import { dbHelpers } from '@/lib/supabase'
+import { dbHelpers, supabase } from '@/lib/supabase'
 import { useToast } from '@/components/ui/use-toast'
 import {
   Dialog,
@@ -38,7 +38,7 @@ export function UserProfileDialog({ open, onOpenChange }: UserProfileDialogProps
     setLoading(true)
     try {
       // Update user profile in Supabase
-      const { error } = await dbHelpers.supabase
+      const { error } = await supabase
         .from('users')
         .update({
           display_name: formData.display_name,

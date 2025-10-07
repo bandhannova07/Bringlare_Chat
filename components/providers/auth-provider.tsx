@@ -70,7 +70,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               email: firebaseUser.email || '',
               display_name: firebaseUser.displayName || 'Anonymous',
               username: firebaseUser.displayName?.toLowerCase().replace(/[^a-z0-9]/g, '') + Math.random().toString(36).substring(2, 6) || 'user' + Math.random().toString(36).substring(2, 6),
-              photo_url: firebaseUser.photoURL,
+              photo_url: firebaseUser.photoURL || undefined,
               status_message: 'Hey there! I am using Bringlare Chat.',
               is_online: true,
               last_seen: new Date().toISOString(),

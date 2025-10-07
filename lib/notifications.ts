@@ -85,17 +85,7 @@ export class NotificationService {
         registration.showNotification(title, {
           ...options,
           badge: '/icons/icon-72x72.png',
-          requireInteraction: true,
-          actions: [
-            {
-              action: 'reply',
-              title: 'Reply'
-            },
-            {
-              action: 'view',
-              title: 'View'
-            }
-          ]
+          requireInteraction: true
         })
       })
     }
