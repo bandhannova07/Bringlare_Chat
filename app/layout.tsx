@@ -1,9 +1,7 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import { ThemeProvider } from '@/components/providers/theme-provider'
-import { AuthProvider } from '@/components/providers/auth-provider'
-import { Toaster } from '@/components/ui/toaster'
+import { ClientProviders } from '@/components/providers/client-providers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,13 +10,17 @@ export const metadata: Metadata = {
   description: 'A professional real-time chat application with modern features',
   keywords: 'chat, messaging, real-time, firebase, nextjs',
   authors: [{ name: 'Bringlare Team' }],
-  viewport: 'width=device-width, initial-scale=1',
-  themeColor: '#075e54',
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
+}
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#075e54',
 }
 
 export default function RootLayout({
@@ -29,17 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AuthProvider>
-            {children}
-            <Toaster />
-          </AuthProvider>
-        </ThemeProvider>
+        <ClientProviders>
+          {children}
+        </ClientProviders>
       </body>
     </html>
   )

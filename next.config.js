@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   images: {
     domains: ['lh3.googleusercontent.com', 'firebasestorage.googleapis.com'],
@@ -12,6 +12,9 @@ const nextConfig = {
         pathname: '/storage/v1/object/public/**',
       },
     ],
+  },
+  experimental: {
+    esmExternals: 'loose'
   }
 }
 
