@@ -155,8 +155,8 @@ export default function TestPage() {
               cursor: 'pointer',
               transition: 'all 0.2s'
             }}
-            onMouseOver={(e) => e.target.style.background = '#2563eb'}
-            onMouseOut={(e) => e.target.style.background = '#3b82f6'}
+            onMouseOver={(e) => (e.target as HTMLButtonElement).style.background = '#2563eb'}
+            onMouseOut={(e) => (e.target as HTMLButtonElement).style.background = '#3b82f6'}
             >
               Primary Button
             </button>

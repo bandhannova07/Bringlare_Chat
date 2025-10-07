@@ -81,8 +81,8 @@ export function LoginForm() {
           opacity: loading ? 0.6 : 1,
           transition: 'all 0.2s'
         }}
-        onMouseOver={(e) => !loading && (e.target.style.background = '#f9fafb')}
-        onMouseOut={(e) => !loading && (e.target.style.background = 'white')}
+        onMouseOver={(e) => !loading && ((e.target as HTMLButtonElement).style.background = '#f9fafb')}
+        onMouseOut={(e) => !loading && ((e.target as HTMLButtonElement).style.background = 'white')}
       >
         {loading ? (
           <div style={{
@@ -159,8 +159,8 @@ export function LoginForm() {
                 outline: 'none',
                 transition: 'border-color 0.2s'
               }}
-              onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+              onFocus={(e) => (e.target as HTMLInputElement).style.borderColor = '#3b82f6'}
+              onBlur={(e) => (e.target as HTMLInputElement).style.borderColor = '#d1d5db'}
               required
             />
           </div>
@@ -190,8 +190,8 @@ export function LoginForm() {
                 outline: 'none',
                 transition: 'border-color 0.2s'
               }}
-              onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
-              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
+              onFocus={(e) => (e.target as HTMLInputElement).style.borderColor = '#3b82f6'}
+              onBlur={(e) => (e.target as HTMLInputElement).style.borderColor = '#d1d5db'}
               required
             />
           </div>
@@ -217,12 +217,12 @@ export function LoginForm() {
           }}
           onMouseOver={(e) => {
             if (!loading && email && password) {
-              e.target.style.background = '#128c7e'
+              (e.target as HTMLButtonElement).style.background = '#128c7e'
             }
           }}
           onMouseOut={(e) => {
             if (!loading && email && password) {
-              e.target.style.background = '#075e54'
+              (e.target as HTMLButtonElement).style.background = '#075e54'
             }
           }}
         >
@@ -251,8 +251,8 @@ export function LoginForm() {
           cursor: 'pointer',
           textDecoration: 'underline'
         }}
-        onMouseOver={(e) => e.target.style.color = '#075e54'}
-        onMouseOut={(e) => e.target.style.color = '#6b7280'}
+        onMouseOver={(e) => (e.target as HTMLButtonElement).style.color = '#075e54'}
+        onMouseOut={(e) => (e.target as HTMLButtonElement).style.color = '#6b7280'}
         >
           Forgot your password?
         </button>
