@@ -19,59 +19,28 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   if (!mounted || loading) {
     return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #075e54 0%, #128c7e 100%)'
-      }}>
-        <div style={{
-          width: '64px',
-          height: '64px',
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
+        <div className="animate-spin" style={{
+          width: '4rem',
+          height: '4rem',
           border: '4px solid rgba(255, 255, 255, 0.3)',
           borderTop: '4px solid white',
-          borderRadius: '50%',
-          animation: 'spin 1s linear infinite'
-        }}>
-          <style jsx>{`
-            @keyframes spin {
-              0% { transform: rotate(0deg); }
-              100% { transform: rotate(360deg); }
-            }
-          `}</style>
-        </div>
+          borderRadius: '50%'
+        }} />
       </div>
     )
   }
 
   if (!user) {
     return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'linear-gradient(135deg, #075e54 0%, #128c7e 100%)',
-        padding: '1rem'
-      }}>
-        <div style={{ width: '100%', maxWidth: '400px' }}>
-          <div style={{
-            background: 'white',
-            borderRadius: '0.5rem',
-            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)',
-            padding: '2rem'
-          }}>
-            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-              <h1 style={{
-                fontSize: '2rem',
-                fontWeight: 'bold',
-                color: '#1f2937',
-                marginBottom: '0.5rem'
-              }}>
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'var(--gradient-primary)' }}>
+        <div className="w-full max-w-md">
+          <div className="card animate-fadeIn" style={{ padding: '2rem' }}>
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                 💬 Bringlare Chat
               </h1>
-              <p style={{ color: '#6b7280' }}>
+              <p style={{ color: 'var(--text-secondary)' }}>
                 Connect with friends and family instantly
               </p>
             </div>

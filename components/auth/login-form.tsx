@@ -59,139 +59,57 @@ export function LoginForm() {
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <div className="space-y-4">
       {/* Google Login */}
       <button
         onClick={handleGoogleLogin}
         disabled={loading}
-        style={{
-          width: '100%',
-          height: '48px',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '0.5rem',
-          background: 'white',
-          border: '1px solid #d1d5db',
-          borderRadius: '0.375rem',
-          color: '#374151',
-          fontSize: '1rem',
-          fontWeight: '500',
-          cursor: loading ? 'not-allowed' : 'pointer',
-          opacity: loading ? 0.6 : 1,
-          transition: 'all 0.2s'
-        }}
-        onMouseOver={(e) => !loading && ((e.target as HTMLButtonElement).style.background = '#f9fafb')}
-        onMouseOut={(e) => !loading && ((e.target as HTMLButtonElement).style.background = 'white')}
+        className="btn btn-secondary w-full h-12"
       >
         {loading ? (
-          <div style={{
-            width: '20px',
-            height: '20px',
-            border: '2px solid #d1d5db',
-            borderTop: '2px solid #3b82f6',
-            borderRadius: '50%',
-            animation: 'spin 1s linear infinite'
-          }} />
+          <div className="animate-spin w-5 h-5 border-2 border-gray-300 border-t-blue-600 rounded-full" />
         ) : (
           <>
-            <Chrome style={{ width: '20px', height: '20px' }} />
+            <Chrome className="w-5 h-5" />
             Continue with Google
           </>
         )}
       </button>
 
       {/* Divider */}
-      <div style={{ position: 'relative', margin: '1.5rem 0' }}>
-        <div style={{
-          position: 'absolute',
-          inset: '0',
-          display: 'flex',
-          alignItems: 'center'
-        }}>
-          <span style={{
-            width: '100%',
-            borderTop: '1px solid #d1d5db'
-          }} />
+      <div className="relative my-6">
+        <div className="absolute inset-0 flex items-center">
+          <span className="w-full border-t" style={{ borderColor: 'var(--border)' }} />
         </div>
-        <div style={{
-          position: 'relative',
-          display: 'flex',
-          justifyContent: 'center',
-          fontSize: '0.875rem'
-        }}>
-          <span style={{
-            padding: '0 0.5rem',
-            background: 'white',
-            color: '#6b7280'
-          }}>
+        <div className="relative flex justify-center text-sm">
+          <span className="px-2 text-sm" style={{ background: 'var(--surface)', color: 'var(--text-secondary)' }}>
             Or continue with email
           </span>
         </div>
       </div>
 
       {/* Email Login Form */}
-      <form onSubmit={handleEmailLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          <div style={{ position: 'relative' }}>
-            <Mail style={{
-              position: 'absolute',
-              left: '12px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: '#9ca3af',
-              width: '20px',
-              height: '20px'
-            }} />
+      <form onSubmit={handleEmailLogin} className="space-y-4">
+        <div className="space-y-3">
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-muted)' }} />
             <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              style={{
-                width: '100%',
-                height: '48px',
-                paddingLeft: '40px',
-                paddingRight: '12px',
-                border: '1px solid #d1d5db',
-                borderRadius: '0.375rem',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border-color 0.2s'
-              }}
-              onFocus={(e) => (e.target as HTMLInputElement).style.borderColor = '#3b82f6'}
-              onBlur={(e) => (e.target as HTMLInputElement).style.borderColor = '#d1d5db'}
+              className="input pl-10 h-12"
               required
             />
           </div>
-          <div style={{ position: 'relative' }}>
-            <Lock style={{
-              position: 'absolute',
-              left: '12px',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              color: '#9ca3af',
-              width: '20px',
-              height: '20px'
-            }} />
+          <div className="relative">
+            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5" style={{ color: 'var(--text-muted)' }} />
             <input
               type="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{
-                width: '100%',
-                height: '48px',
-                paddingLeft: '40px',
-                paddingRight: '12px',
-                border: '1px solid #d1d5db',
-                borderRadius: '0.375rem',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border-color 0.2s'
-              }}
-              onFocus={(e) => (e.target as HTMLInputElement).style.borderColor = '#3b82f6'}
-              onBlur={(e) => (e.target as HTMLInputElement).style.borderColor = '#d1d5db'}
+              className="input pl-10 h-12"
               required
             />
           </div>
@@ -200,41 +118,10 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={loading || !email || !password}
-          style={{
-            width: '100%',
-            height: '48px',
-            background: loading || !email || !password ? '#9ca3af' : '#075e54',
-            color: 'white',
-            border: 'none',
-            borderRadius: '0.375rem',
-            fontSize: '1rem',
-            fontWeight: '500',
-            cursor: loading || !email || !password ? 'not-allowed' : 'pointer',
-            transition: 'background-color 0.2s',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}
-          onMouseOver={(e) => {
-            if (!loading && email && password) {
-              (e.target as HTMLButtonElement).style.background = '#128c7e'
-            }
-          }}
-          onMouseOut={(e) => {
-            if (!loading && email && password) {
-              (e.target as HTMLButtonElement).style.background = '#075e54'
-            }
-          }}
+          className="btn btn-primary w-full h-12"
         >
           {loading ? (
-            <div style={{
-              width: '20px',
-              height: '20px',
-              border: '2px solid rgba(255, 255, 255, 0.3)',
-              borderTop: '2px solid white',
-              borderRadius: '50%',
-              animation: 'spin 1s linear infinite'
-            }} />
+            <div className="animate-spin w-5 h-5 border-2 border-white border-t-transparent rounded-full" />
           ) : (
             'Sign In'
           )}
@@ -242,18 +129,8 @@ export function LoginForm() {
       </form>
 
       {/* Forgot Password */}
-      <div style={{ textAlign: 'center' }}>
-        <button style={{
-          background: 'none',
-          border: 'none',
-          fontSize: '0.875rem',
-          color: '#6b7280',
-          cursor: 'pointer',
-          textDecoration: 'underline'
-        }}
-        onMouseOver={(e) => (e.target as HTMLButtonElement).style.color = '#075e54'}
-        onMouseOut={(e) => (e.target as HTMLButtonElement).style.color = '#6b7280'}
-        >
+      <div className="text-center">
+        <button className="btn btn-ghost text-sm">
           Forgot your password?
         </button>
       </div>

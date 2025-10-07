@@ -50,63 +50,34 @@ export function Sidebar({ chats, selectedChatId, onChatSelect, onNewChat, loadin
 
   return (
     <>
-      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className="flex flex-col h-full">
         {/* Header */}
-        <div style={{
-          padding: '1rem',
-          borderBottom: '1px solid #e5e7eb',
-          background: '#075e54'
-        }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '1rem'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div 
+          className="p-4 border-b animate-slideInLeft"
+          style={{
+            background: 'var(--gradient-primary)',
+            borderColor: 'var(--border)'
+          }}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center space-x-3">
               <div
+                className="avatar avatar-lg online-indicator cursor-pointer"
+                onClick={() => setShowProfileDialog(true)}
                 style={{
-                  width: '40px',
-                  height: '40px',
-                  borderRadius: '50%',
-                  background: user.photo_url ? `url(${user.photo_url})` : '#25d366',
+                  backgroundImage: user.photo_url ? `url(${user.photo_url})` : undefined,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  cursor: 'pointer',
-                  transition: 'transform 0.2s',
                   border: '2px solid rgba(255, 255, 255, 0.2)'
                 }}
-                onClick={() => setShowProfileDialog(true)}
-                onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.05)'}
-                onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
               >
                 {!user.photo_url && user.display_name?.charAt(0).toUpperCase()}
               </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h2 style={{
-                  fontWeight: '600',
-                  color: 'white',
-                  fontSize: '1rem',
-                  margin: 0,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap'
-                }}>
+              <div className="flex-1 min-w-0">
+                <h2 className="font-semibold text-white truncate">
                   {user.display_name}
                 </h2>
-                <p style={{
-                  fontSize: '0.875rem',
-                  color: 'rgba(255, 255, 255, 0.8)',
-                  margin: 0,
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  whiteSpace: 'nowrap'
-                }}>
+                <p className="text-sm text-white/80 truncate">
                   {user.status_message || 'Available'}
                 </p>
               </div>
