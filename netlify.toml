@@ -3,11 +3,14 @@
   publish = ".next"
 
 [build.environment]
-  NODE_VERSION = "20"
-  NPM_VERSION = "10"
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[functions]
+  node_bundler = "esbuild"
 
 [[redirects]]
   from = "/*"
