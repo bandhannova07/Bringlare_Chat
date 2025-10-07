@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  darkMode: ["class"],
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -18,15 +18,22 @@ const config: Config = {
     },
     extend: {
       colors: {
+        // New Professional Colors
+        primary: {
+          DEFAULT: '#4F46E5',
+          600: '#4338CA',
+        },
+        accent: '#10B981',
+        danger: '#EF4444',
+        surface: 'var(--surface)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        // Legacy colors for existing components
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
-        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
@@ -39,10 +46,6 @@ const config: Config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
-        accent: {
-          DEFAULT: "hsl(var(--accent))",
-          foreground: "hsl(var(--accent-foreground))",
-        },
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -52,17 +55,32 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
         chat: {
-          primary: "#075e54",
-          secondary: "#128c7e",
-          accent: "#25d366",
+          primary: "#4F46E5",
+          secondary: "#4338CA",
+          accent: "#10B981",
           bubble: "#dcf8c6",
           received: "#ffffff",
         }
       },
+      spacing: {
+        'xs': '4px',
+        'sm': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        '2xl': '32px',
+        '3xl': '40px',
+        '4xl': '48px',
+      },
       borderRadius: {
+        'xs': '4px',
+        'sm': '6px',
+        'md': '12px',
+        'pill': '9999px',
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+      },
+      fontFamily: {
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
       },
       keyframes: {
         "accordion-down": {

@@ -41,18 +41,13 @@ export function ChatLayout() {
   }
 
   return (
-    <div className="flex h-screen" style={{ background: 'var(--background)' }}>
+    <div className="app-shell">
       {/* Sidebar */}
       <motion.div
         initial={{ x: -300 }}
         animate={{ x: 0 }}
         transition={{ duration: 0.3 }}
-        className="w-80 flex flex-col animate-slideInLeft"
-        style={{
-          background: 'var(--surface)',
-          borderRight: '1px solid var(--border)',
-          boxShadow: 'var(--shadow-md)'
-        }}
+        className="sidebar"
       >
         <Sidebar
           chats={chats}
@@ -64,7 +59,7 @@ export function ChatLayout() {
       </motion.div>
 
       {/* Main Chat Area */}
-      <div className="flex-1 flex flex-col animate-fadeIn" style={{ background: 'var(--gradient-bg)' }}>
+      <div className="main-chat">
         {selectedChatId ? (
           <ChatWindow
             chatId={selectedChatId}

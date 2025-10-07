@@ -19,13 +19,13 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   if (!mounted || loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--gradient-primary)' }}>
-        <div className="animate-spin" style={{
-          width: '4rem',
+      <div className="min-h-screen flex items-center justify-center" style={{ background: 'var(--primary)' }}>
+        <div className="loading-spinner" style={{ 
+          width: '4rem', 
           height: '4rem',
-          border: '4px solid rgba(255, 255, 255, 0.3)',
-          borderTop: '4px solid white',
-          borderRadius: '50%'
+          borderWidth: '4px',
+          borderColor: 'rgba(255, 255, 255, 0.3)',
+          borderTopColor: 'white'
         }} />
       </div>
     )
@@ -33,9 +33,15 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'var(--gradient-primary)' }}>
+      <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'var(--primary)' }}>
         <div className="w-full max-w-md">
-          <div className="card animate-fadeIn" style={{ padding: '2rem' }}>
+          <div style={{ 
+            background: 'var(--surface)', 
+            padding: '2rem', 
+            borderRadius: 'var(--radius-md)',
+            boxShadow: 'var(--shadow-lg)',
+            border: '1px solid var(--border)'
+          }}>
             <div className="text-center mb-8">
               <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--text-primary)' }}>
                 💬 Bringlare Chat
