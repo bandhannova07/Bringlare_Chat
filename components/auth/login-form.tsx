@@ -59,75 +59,203 @@ export function LoginForm() {
   }
 
   return (
-    <div className="space-y-4">
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       {/* Google Login */}
-      <Button
+      <button
         onClick={handleGoogleLogin}
         disabled={loading}
-        variant="outline"
-        className="w-full h-12 text-gray-700 border-gray-300 hover:bg-gray-50"
+        style={{
+          width: '100%',
+          height: '48px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.5rem',
+          background: 'white',
+          border: '1px solid #d1d5db',
+          borderRadius: '0.375rem',
+          color: '#374151',
+          fontSize: '1rem',
+          fontWeight: '500',
+          cursor: loading ? 'not-allowed' : 'pointer',
+          opacity: loading ? 0.6 : 1,
+          transition: 'all 0.2s'
+        }}
+        onMouseOver={(e) => !loading && (e.target.style.background = '#f9fafb')}
+        onMouseOut={(e) => !loading && (e.target.style.background = 'white')}
       >
         {loading ? (
-          <LoadingSpinner size="sm" />
+          <div style={{
+            width: '20px',
+            height: '20px',
+            border: '2px solid #d1d5db',
+            borderTop: '2px solid #3b82f6',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }} />
         ) : (
           <>
-            <Chrome className="w-5 h-5 mr-2" />
+            <Chrome style={{ width: '20px', height: '20px' }} />
             Continue with Google
           </>
         )}
-      </Button>
+      </button>
 
-      <div className="relative">
-        <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t border-gray-300" />
+      {/* Divider */}
+      <div style={{ position: 'relative', margin: '1.5rem 0' }}>
+        <div style={{
+          position: 'absolute',
+          inset: '0',
+          display: 'flex',
+          alignItems: 'center'
+        }}>
+          <span style={{
+            width: '100%',
+            borderTop: '1px solid #d1d5db'
+          }} />
         </div>
-        <div className="relative flex justify-center text-sm">
-          <span className="px-2 bg-white text-gray-500">Or continue with email</span>
+        <div style={{
+          position: 'relative',
+          display: 'flex',
+          justifyContent: 'center',
+          fontSize: '0.875rem'
+        }}>
+          <span style={{
+            padding: '0 0.5rem',
+            background: 'white',
+            color: '#6b7280'
+          }}>
+            Or continue with email
+          </span>
         </div>
       </div>
 
       {/* Email Login Form */}
-      <form onSubmit={handleEmailLogin} className="space-y-4">
-        <div className="space-y-2">
-          <div className="relative">
-            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
+      <form onSubmit={handleEmailLogin} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+          <div style={{ position: 'relative' }}>
+            <Mail style={{
+              position: 'absolute',
+              left: '12px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: '#9ca3af',
+              width: '20px',
+              height: '20px'
+            }} />
+            <input
               type="email"
               placeholder="Enter your email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="pl-10 h-12"
+              style={{
+                width: '100%',
+                height: '48px',
+                paddingLeft: '40px',
+                paddingRight: '12px',
+                border: '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+                fontSize: '1rem',
+                outline: 'none',
+                transition: 'border-color 0.2s'
+              }}
+              onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               required
             />
           </div>
-          <div className="relative">
-            <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <Input
+          <div style={{ position: 'relative' }}>
+            <Lock style={{
+              position: 'absolute',
+              left: '12px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              color: '#9ca3af',
+              width: '20px',
+              height: '20px'
+            }} />
+            <input
               type="password"
               placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="pl-10 h-12"
+              style={{
+                width: '100%',
+                height: '48px',
+                paddingLeft: '40px',
+                paddingRight: '12px',
+                border: '1px solid #d1d5db',
+                borderRadius: '0.375rem',
+                fontSize: '1rem',
+                outline: 'none',
+                transition: 'border-color 0.2s'
+              }}
+              onFocus={(e) => e.target.style.borderColor = '#3b82f6'}
+              onBlur={(e) => e.target.style.borderColor = '#d1d5db'}
               required
             />
           </div>
         </div>
 
-        <Button
+        <button
           type="submit"
           disabled={loading || !email || !password}
-          variant="chat"
-          className="w-full h-12"
+          style={{
+            width: '100%',
+            height: '48px',
+            background: loading || !email || !password ? '#9ca3af' : '#075e54',
+            color: 'white',
+            border: 'none',
+            borderRadius: '0.375rem',
+            fontSize: '1rem',
+            fontWeight: '500',
+            cursor: loading || !email || !password ? 'not-allowed' : 'pointer',
+            transition: 'background-color 0.2s',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+          onMouseOver={(e) => {
+            if (!loading && email && password) {
+              e.target.style.background = '#128c7e'
+            }
+          }}
+          onMouseOut={(e) => {
+            if (!loading && email && password) {
+              e.target.style.background = '#075e54'
+            }
+          }}
         >
-          {loading ? <LoadingSpinner size="sm" /> : 'Sign In'}
-        </Button>
+          {loading ? (
+            <div style={{
+              width: '20px',
+              height: '20px',
+              border: '2px solid rgba(255, 255, 255, 0.3)',
+              borderTop: '2px solid white',
+              borderRadius: '50%',
+              animation: 'spin 1s linear infinite'
+            }} />
+          ) : (
+            'Sign In'
+          )}
+        </button>
       </form>
 
       {/* Forgot Password */}
-      <div className="text-center">
-        <Button variant="link" className="text-sm text-gray-600 hover:text-chat-primary">
+      <div style={{ textAlign: 'center' }}>
+        <button style={{
+          background: 'none',
+          border: 'none',
+          fontSize: '0.875rem',
+          color: '#6b7280',
+          cursor: 'pointer',
+          textDecoration: 'underline'
+        }}
+        onMouseOver={(e) => e.target.style.color = '#075e54'}
+        onMouseOut={(e) => e.target.style.color = '#6b7280'}
+        >
           Forgot your password?
-        </Button>
+        </button>
       </div>
     </div>
   )
